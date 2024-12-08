@@ -1,0 +1,30 @@
+name: Run Soul Workflow
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '*/240 * * * *'
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+
+      - name: Install required packages which needed
+        run: |
+          pip install requests
+
+      - name: Run soul.py
+        run: ls && python3 new.py
+        
